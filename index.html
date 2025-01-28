@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyword Input Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+ 
+  <p>Enter a keyword (e.g., dog, cat, house, mouse):</p>
+  <input type="text" id="keywordInput" placeholder="Type a keyword...">
+  <button onclick="checkKeyword()">Submit</button>
+  <p id="message"></p>
+
+  <script>
+    const keywords = {
+      dog: "https://example.com/dog",
+      cat: "https://example.com/cat",
+      house: "https://example.com/house",
+      mouse: "https://example.com/mouse"
+    };
+
+    function checkKeyword() {
+      const input = document.getElementById("keywordInput").value.trim().toLowerCase();
+      const messageElement = document.getElementById("message");
+
+      if (keywords[input]) {
+       
+        messageElement.innerHTML = "";
+
+
+        const link = document.createElement("a");
+        link.href = keywords[input];
+        link.textContent = `Go to the ${input} page`;
+        link.target = "_blank";
+        messageElement.appendChild(link);
+      } else {
+
+        messageElement.innerHTML = `<span class="error">Error: Invalid keyword!</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
