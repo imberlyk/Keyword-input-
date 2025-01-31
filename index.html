@@ -24,6 +24,14 @@
       color: red;
       margin-top: 10px;
     }
+    #imageContainer {
+      margin-top: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -32,32 +40,27 @@
   <input type="text" id="keywordInput" placeholder="Type a keyword...">
   <button onclick="checkKeyword()">Submit</button>
   <p id="message"></p>
-
+  <div id="imageContainer"></div>
+  
   <script>
     const keywords = {
-      dog: "https://example.com/dog",
-      cat: "https://example.com/cat",
-      house: "https://example.com/house",
-      mouse: "https://example.com/mouse"
+      dog: "dog.jpg", //here is where you can add the images to the correlating keyword 
+      cat: "cat.jpg",
+      house: "house.jpg",
+      mouse: "mouse.jpg"
     };
 
     function checkKeyword() {
       const input = document.getElementById("keywordInput").value.trim().toLowerCase();
       const messageElement = document.getElementById("message");
+      const imageContainer = document.getElementById("imageContainer");
 
       if (keywords[input]) {
-       
         messageElement.innerHTML = "";
-
-
-        const link = document.createElement("a");
-        link.href = keywords[input];
-        link.textContent = `Go to the ${input} page`;
-        link.target = "_blank";
-        messageElement.appendChild(link);
+        imageContainer.innerHTML = `<img src="${keywords[input]}" alt="${input}">`;
       } else {
-
         messageElement.innerHTML = `<span class="error">Error: Invalid keyword!</span>`;
+        imageContainer.innerHTML = "";
       }
     }
   </script>
